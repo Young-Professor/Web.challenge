@@ -24,7 +24,7 @@ const Home = ({ setShoes }) => {
 
   const [imageId, setImageId] = useState("1");
   const [imageIndex, setImageIndex] = useState(0);
-  const [items, setItems] = useState(0);
+  const [items, setItems] = useState(1);
   const [Nullitems, setNullitems] = useState(false);
   const [Success, setSuccess] = useState(false);
 
