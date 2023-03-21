@@ -2,3 +2,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navlinks{
+    display: flex;
+    @apply space-x-3 mt-3;
+}
+
+@media (max-width:768px) {
+    
+    .navlinks{
+        @apply hidden;
+    }
+    .navlinks show{
+        @apply hidden;
+    }
+    .navlinks li{
+        @apply pt-7
+    }
+    .show{
+        @apply block absolute bg-slate-50 w-1/2 h-screen mt-0 px-20 pt-12 left-0 top-0 z-10 space-x-0 ;
+
+    }
+}
+@media (max-width:640px) {
+    
+    .navlinks{
+        @apply px-12 pt-12 left-0 top-0 z-10  ;
+    }
+    .navlinks li{
+        @apply pt-7
+    }
+}
+@media (max-width:340px) {
+    
+    .navlinks{
+        @apply px-3 pt-12 left-0 top-0 z-10  ;
+    }
+    .navlinks li{
+        @apply pt-7
+    }
+}

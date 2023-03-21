@@ -1,46 +1,73 @@
 import { useState } from "react";
 import { FaAngleRight,FaAngleLeft } from "react-icons/fa";
 
-const images = [
-  require("../images/image-product-1-thumbnail.jpg"),
-  require("../images/image-product-2-thumbnail.jpg"),
-  require("../images/image-product-3.jpg"),
-  require("../images/image-product-4.jpg"),
+
+const photos = [
+  { id: 1, src: require("../images/image-product-1-thumbnail.jpg"), price:'123.0' },
+  { id: 2, src: require("../images/image-product-2-thumbnail.jpg"), price:'220.5' },
+  { id: 3, src: require("../images/image-product-3.jpg"),price:'323.5' },
+  { id: 4, src: require("../images/image-product-4.jpg"),price:'423.5' },
 ];
-const Home = ({ setItem }) => {
-  const [imageSrc, setimageSrc] = useState(
-    require("../images/image-product-1-thumbnail.jpg")
-  );
-  const [imageId, setImageId] = useState("");
+
+  const Home = ({ setShoes }) => {
+  const [imageSrc, setimageSrc] = useState(require("../images/image-product-1-thumbnail.jpg"));
+  const [ShoePrice, setShoePrice]=useState(photos[0].price)
+
+  const [imageId, setImageId] = useState("1");
   const [imageIndex, setImageIndex] = useState(0);
   const [items, setItems] = useState(0);
-
+  const [Nullitems, setNullitems] = useState(false);
 
   const handleImageClick = (event) => {
     const imgId = event.target.id;
     setImageId(imgId);
+    setShoePrice(photos[imgId-1].price);
     const src = event.target.src;
     setimageSrc(src);
   };
+// Add number of shoes
   const handleIncrement = () => {
     setItems(items + 1);
-    setItem((prevItems) => prevItems + 1);
+    // setItem((prevItems) => prevItems + 1);
   };
   const handleDecrement = () => {
     setItems(items - 1);
-    setItem((prevItems) => prevItems - 1);
+    // setItem((prevItems) => prevItems - 1);
+  };
+
+  //when one adds items to cart
+  const handleAddToCart = () => {
+    let timer;
+    if (items === 0) {
+      setNullitems(true);
+      timer = setTimeout(() => {
+        setNullitems(false);
+      }, 3000);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+    const selectedShoe = photos.find((shoe) => shoe.id.toString() === imageId);
+    const shoeData = {
+      ...selectedShoe,
+      quantity: items,
+    };
+    setShoes(shoeData);
+    // console.log(shoeData.price);
   };
 
   const handleRightArrowClick = () => {
-    const nextIndex = (imageIndex + 1) % images.length;
+    const nextIndex = (imageIndex + 1) % photos.length;
     setImageIndex(nextIndex);
-    setimageSrc(images[nextIndex]);
+    setimageSrc(photos[nextIndex].src);
+    setShoePrice(photos[nextIndex].price);
   };
-
+  
   const handleLeftArrowClick = () => {
-    const prevIndex = (imageIndex - 1 + images.length) % images.length;
+    const prevIndex = (imageIndex - 1 + photos.length) % photos.length;
     setImageIndex(prevIndex);
-    setimageSrc(images[prevIndex]);
+    setimageSrc(photos[prevIndex].src);
+    setShoePrice(photos[prevIndex].price);
   };
 
   return (
@@ -69,7 +96,7 @@ const Home = ({ setItem }) => {
           </p>
 
           <div className="flex space-x-5 mt-2">
-            <p className="text-2xl font-bold ">$125.00</p>
+            <p id="price" className="text-2xl font-bold ">{ShoePrice}</p>
             <p className="mt-1 rounded-lg  bg-slate-200 px-2 h-6  text-orange-500">
               50%
             </p>
@@ -94,20 +121,21 @@ const Home = ({ setItem }) => {
             </div>
             <div>
               <button
-                type="submit"
+               onClick={handleAddToCart}
                 className="bg-orange-500 w-60 py-2 md:w-48 rounded-md shadow-xl shadow-orange-200"
               >
                 Add to cart
               </button>
             </div>
           </div>
+           {Nullitems && <h3>select number of items please</h3>}
         </div>
       </div>
       <div className="hidden md:flex mt-1 space-x-5">
         <div
           className={`${
             imageId === "1" ? "opacity-60" : ""
-          } w-14 h-14 rounded bg-slate-500"`}
+          } w-14 h-14 rounded bg-slate-500" cursor-pointer`}
         >
           <img
             id="1"
@@ -120,7 +148,7 @@ const Home = ({ setItem }) => {
         <div
           className={`${
             imageId === "2" ? "opacity-60" : ""
-          } w-14 h-14 rounded bg-slate-500"`}
+          } w-14 h-14 rounded bg-slate-500" cursor-pointer`}
         >
           <img
             id="2"
@@ -133,7 +161,7 @@ const Home = ({ setItem }) => {
         <div
           className={`${
             imageId === "3" ? "opacity-60" : ""
-          } w-14 h-14 rounded bg-slate-500"`}
+          } w-14 h-14 rounded bg-slate-500" cursor-pointer`}
         >
           <img
             id="3"
@@ -146,12 +174,12 @@ const Home = ({ setItem }) => {
         <div
           className={`${
             imageId === "4" ? "opacity-60" : ""
-          } w-14 h-14 rounded bg-slate-500"`}
+          } w-14 h-14 rounded bg-slate-500" cursor-pointer`}
         >
           <img
-            id="4"
+            id={photos[3].id}
             className="w-14 h-14 rounded"
-            src={require("../images/image-product-4.jpg")}
+            src={photos[3].src}
             alt=""
             onClick={handleImageClick}
           />
