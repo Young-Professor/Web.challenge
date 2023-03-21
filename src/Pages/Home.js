@@ -1,17 +1,26 @@
 import { useState } from "react";
-import { FaAngleRight,FaAngleLeft } from "react-icons/fa";
-
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
 const photos = [
-  { id: 1, src: require("../images/image-product-1-thumbnail.jpg"), price:'123.0' },
-  { id: 2, src: require("../images/image-product-2-thumbnail.jpg"), price:'220.5' },
-  { id: 3, src: require("../images/image-product-3.jpg"),price:'323.5' },
-  { id: 4, src: require("../images/image-product-4.jpg"),price:'423.5' },
+  {
+    id: 1,
+    src: "https://frabjous-gumdrop-8e4148.netlify.app/images/image-product-1.jpg",
+    price: "125.0",
+  },
+  {
+    id: 2,
+    src: "https://frabjous-gumdrop-8e4148.netlify.app/images/image-product-2.jpg",
+    price: "125.0",
+  },
+  { id: 3, src: require("../images/image-product-3.jpg"), price: "125.0" },
+  { id: 4, src: require("../images/image-product-4.jpg"), price: "125.0" },
 ];
 
-  const Home = ({ setShoes }) => {
-  const [imageSrc, setimageSrc] = useState(require("../images/image-product-1-thumbnail.jpg"));
-  const [ShoePrice, setShoePrice]=useState(photos[0].price)
+const Home = ({ setShoes }) => {
+  const [imageSrc, setimageSrc] = useState(
+    require("../images/image-product-1-thumbnail.jpg")
+  );
+  const [ShoePrice, setShoePrice] = useState(photos[0].price);
 
   const [imageId, setImageId] = useState("1");
   const [imageIndex, setImageIndex] = useState(0);
@@ -22,11 +31,11 @@ const photos = [
   const handleImageClick = (event) => {
     const imgId = event.target.id;
     setImageId(imgId);
-    setShoePrice(photos[imgId-1].price);
+    setShoePrice(photos[imgId - 1].price);
     const src = event.target.src;
     setimageSrc(src);
   };
-// Add number of shoes
+  // Add number of shoes
   const handleIncrement = () => {
     setItems(items + 1);
     // setItem((prevItems) => prevItems + 1);
@@ -55,13 +64,12 @@ const photos = [
     };
     setShoes(shoeData);
     setSuccess(true);
-      timer = setTimeout(() => {
-        setSuccess(false);
-      }, 3000);
-      return () => {
-        clearTimeout(timer);
-      };
-    
+    timer = setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
+    return () => {
+      clearTimeout(timer);
+    };
   };
 
   const handleRightArrowClick = () => {
@@ -70,7 +78,7 @@ const photos = [
     setimageSrc(photos[nextIndex].src);
     setShoePrice(photos[nextIndex].price);
   };
-  
+
   const handleLeftArrowClick = () => {
     const prevIndex = (imageIndex - 1 + photos.length) % photos.length;
     setImageIndex(prevIndex);
@@ -88,8 +96,16 @@ const photos = [
               src={imageSrc}
               alt="Shoes"
             />
-            <FaAngleRight  onClick={handleRightArrowClick} size={26} className='absolute md:hidden top-56 right-0  sm:right-16 cursor-pointer'/>
-            <FaAngleLeft onClick={handleLeftArrowClick} size={26} className='absolute md:hidden top-56 cursor-pointer' />
+            <FaAngleRight
+              onClick={handleRightArrowClick}
+              size={26}
+              className="absolute md:hidden top-56 right-0  sm:right-16 cursor-pointer"
+            />
+            <FaAngleLeft
+              onClick={handleLeftArrowClick}
+              size={26}
+              className="absolute md:hidden top-56 cursor-pointer"
+            />
           </div>
         </div>
         <div className="px-10">
@@ -98,18 +114,20 @@ const photos = [
             Fall Limited Edition <br /> Sneakers
           </h2>
           <p className="pb-2 pt-4 ">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita
-            rerum nisi quibusdam id eligendi a dolore fuga ab esse excepturi
-            omnis rerum nisi quibusdam id eligendi a dolore
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they'll withstand everything
+            the weather can offer.
           </p>
 
           <div className="flex space-x-5 mt-2">
-            <p id="price" className="text-2xl font-bold ">{ShoePrice}</p>
+            <p id="price" className="text-2xl font-bold ">
+              {ShoePrice}
+            </p>
             <p className="mt-1 rounded-lg  bg-slate-200 px-2 h-6  text-orange-500">
               50%
             </p>
           </div>
-          <p className="mt-1 text-gray-500 text-sm">$250.00</p>
+          <p className="mt-1 text-gray-500 text-sm line-through">$250.00</p>
           <div className="md:flex space-x-2 pt-3">
             <div className="flex w-60 md:w-44 rounded h-auto bg-gray-300 justify-between p-2 py-2 mb-2 ml-2">
               <button
@@ -129,15 +147,23 @@ const photos = [
             </div>
             <div>
               <button
-               onClick={handleAddToCart}
+                onClick={handleAddToCart}
                 className="bg-orange-500 w-60 py-2 md:w-48 rounded-md shadow-xl shadow-orange-200"
               >
                 Add to cart
               </button>
             </div>
           </div>
-           {Nullitems && <h3 className="text-red-600 font-bold">select number of items please</h3>}
-           {Success && <h3 className="text-green-700 font-bold">Items successfully added to the cart</h3>}
+          {Nullitems && (
+            <h3 className="text-red-600 font-bold">
+              select number of items please
+            </h3>
+          )}
+          {Success && (
+            <h3 className="text-green-700 font-bold">
+              Items successfully added to the cart
+            </h3>
+          )}
         </div>
       </div>
       <div className="hidden md:flex mt-1 space-x-5">
@@ -149,7 +175,7 @@ const photos = [
           <img
             id="1"
             className="w-14 h-14 rounded"
-            src={require("../images/image-product-1-thumbnail.jpg")}
+            src={photos[0].src}
             alt="Shoes"
             onClick={handleImageClick}
           />
@@ -162,7 +188,7 @@ const photos = [
           <img
             id="2"
             className="w-14 h-14 rounded"
-            src={require("../images/image-product-2-thumbnail.jpg")}
+            src={photos[1].src}
             onClick={handleImageClick}
             alt=""
           />
@@ -175,7 +201,7 @@ const photos = [
           <img
             id="3"
             className="w-14 h-14 rounded"
-            src={require("../images/image-product-3.jpg")}
+            src={photos[2].src}
             alt=""
             onClick={handleImageClick}
           />

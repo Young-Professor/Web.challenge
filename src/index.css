@@ -8,8 +8,8 @@
     @apply space-x-3 mt-3;
 }
 
-.navlinks a.active{
-    border-bottom: 3px solid #000;
+.navlinks li :hover{
+    border-bottom: 2px solid #F97316;
 }
 @media (max-width:768px) {
     
