@@ -16,9 +16,8 @@ const Modal = ({shoes, handleDelete}) => {
      total = numShoes * numItems;
      formattedTotal = formatter.format(total);
   }
-  
   return (
-    <div className="absolute left-[10%] top-32 sm:left-[50%] md:left-[65%] sm:top-20 z-10 bg-white text-gray-800 shadow-lg w-[250px] h-[200px]">
+    <div className="absolute left-[0%] top-32 sm:left-[50%] md:left-[65%] sm:top-20 z-10 bg-white text-gray-800 shadow-lg w-[320px] h-[250px] md:w-[250px] md:h-[200px] rounded-md">
       <div className="h-10 border">
         <h1>Cart</h1>
        {!shoes ?<div className="flex w-full h-44 justify-center items-center"><p>Your cart is empty</p></div> : <div>
@@ -27,7 +26,7 @@ const Modal = ({shoes, handleDelete}) => {
               <img
                 id="1"
                 className="w-14 h-14 rounded"
-                src={require("../images/image-product-1-thumbnail.jpg")}
+                src={shoes.src}
                 alt="Shoes"
               />
           </div>

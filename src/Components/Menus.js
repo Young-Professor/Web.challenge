@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import {
   AiOutlineMenu,
   AiOutlineShoppingCart,
@@ -37,11 +38,21 @@ const Menu = ({ shoes, handleDelete }) => {
             size={26}
             className="cursor-pointer md:hidden"
           />
-          <li><a href="">Collections</a></li>
-          <li>Mens</li>
-          <li>Women</li>
-          <li>About</li>
-          <li>Contact</li>
+          <li>
+            <NavLink exact={"true"} to="/">Collections</NavLink>
+          </li>
+          <li>
+            <NavLink to="/mens">Mens</NavLink>
+          </li>
+          <li>
+            <NavLink to="/women">Women</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">Contact</NavLink>
+          </li>
         </ul>
       </div>
       <div className=" md:ml-20 lg:ml-96 flex space-x-10">

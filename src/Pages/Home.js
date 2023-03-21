@@ -17,6 +17,7 @@ const photos = [
   const [imageIndex, setImageIndex] = useState(0);
   const [items, setItems] = useState(0);
   const [Nullitems, setNullitems] = useState(false);
+  const [Success, setSuccess] = useState(false);
 
   const handleImageClick = (event) => {
     const imgId = event.target.id;
@@ -53,6 +54,14 @@ const photos = [
       quantity: items,
     };
     setShoes(shoeData);
+    setSuccess(true);
+      timer = setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+      return () => {
+        clearTimeout(timer);
+      };
+    
   };
 
   const handleRightArrowClick = () => {
@@ -127,7 +136,8 @@ const photos = [
               </button>
             </div>
           </div>
-           {Nullitems && <h3>select number of items please</h3>}
+           {Nullitems && <h3 className="text-red-600 font-bold">select number of items please</h3>}
+           {Success && <h3 className="text-green-700 font-bold">Items successfully added to the cart</h3>}
         </div>
       </div>
       <div className="hidden md:flex mt-1 space-x-5">
