@@ -17,10 +17,8 @@ const Modal = ({shoes, handleDelete}) => {
      formattedTotal = formatter.format(total);
   }
   
-  console.log(shoes);
-
   return (
-    <div className="absolute top-20 z-10 bg-white text-gray-800 shadow-lg w-[250px] h-[200px]">
+    <div className="absolute left-[10%] top-32 sm:left-[50%] md:left-[65%] sm:top-20 z-10 bg-white text-gray-800 shadow-lg w-[250px] h-[200px]">
       <div className="h-10 border">
         <h1>Cart</h1>
        {!shoes ?<div className="flex w-full h-44 justify-center items-center"><p>Your cart is empty</p></div> : <div>

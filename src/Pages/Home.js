@@ -53,7 +53,6 @@ const photos = [
       quantity: items,
     };
     setShoes(shoeData);
-    // console.log(shoeData.price);
   };
 
   const handleRightArrowClick = () => {
