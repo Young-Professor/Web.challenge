@@ -18,7 +18,7 @@ const photos = [
 
 const Home = ({ setShoes }) => {
   const [imageSrc, setimageSrc] = useState(
-    require("../images/image-product-1-thumbnail.jpg")
+    "https://frabjous-gumdrop-8e4148.netlify.app/images/image-product-1.jpg"
   );
   const [ShoePrice, setShoePrice] = useState(photos[0].price);
 
