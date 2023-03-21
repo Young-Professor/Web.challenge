@@ -30,7 +30,7 @@
 @media (max-width:640px) {
     
     .navlinks{
-        @apply px-12 pt-12 left-0 top-0 z-10  ;
+        @apply px-12 pt-12 left-0 top-0 z-20  ;
     }
     .navlinks li{
         @apply pt-7
