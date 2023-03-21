@@ -5,7 +5,7 @@ import {
   AiOutlineClose,
 } from "react-icons/ai";
 import Modal from "./modal";
-const Menu = ({ shoes }) => {
+const Menu = ({ shoes, handleDelete }) => {
   const [modal, setModal] = useState(false);
   const handleClick = () => {
     if (!modal) setModal(true);
@@ -63,7 +63,7 @@ const Menu = ({ shoes }) => {
           />
         </div>
         {/* modal */}
-        {modal ? <Modal shoes={shoes} /> : null}
+        {modal ? <Modal shoes={shoes} handleDelete={handleDelete} /> : null}
       </div>
     </div>
   );
