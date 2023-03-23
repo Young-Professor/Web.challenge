@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const photos = [
   {
@@ -49,6 +51,10 @@ const Home = ({ setShoes }) => {
   const handleAddToCart = () => {
     let timer;
     if (items === 0) {
+      toast.error('Please select number of items!', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000
+    });
       setNullitems(true);
       timer = setTimeout(() => {
         setNullitems(false);
@@ -57,6 +63,10 @@ const Home = ({ setShoes }) => {
         clearTimeout(timer);
       };
     }
+    toast.success('Item added succesfully !', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000
+  });
     const selectedShoe = photos.find((shoe) => shoe.id.toString() === imageId);
     const shoeData = {
       ...selectedShoe,
@@ -164,6 +174,7 @@ const Home = ({ setShoes }) => {
               Items successfully added to the cart
             </h3>
           )}
+           <ToastContainer />
         </div>
       </div>
       <div className="hidden md:flex mt-1 space-x-5">
